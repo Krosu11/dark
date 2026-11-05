@@ -74,8 +74,20 @@ h1{font-family:Dongle;font-size:44px;font-weight:700;line-height:.95}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
 .pill{padding:8px 14px;border-radius:99px;border:1px solid var(--line);background:var(--panel);font-size:12.5px;cursor:pointer;color:var(--dim)}
 .pill.on,.pill:hover{border-color:var(--or);color:var(--or)}
-.frame{width:100%;height:min(72vh,640px);border:1px solid var(--line);border-radius:16px;background:#000}
+.frame{width:100%;height:min(72vh,640px);border:1px solid var(--line);border-radius:16px;background:#000;position:relative;}
 .frame.tall{height:min(80vh,760px)}
+/* Loader para cuando el proxy tarda */
+.frame::after {
+    content: 'Cargando...';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--dim);
+    font-size: 14px;
+    display: none;
+}
+.frame.loading::after { display: block; }
+
 .chat{display:flex;flex-direction:column;gap:10px;min-height:340px;margin-bottom:12px}
 .msg{padding:12px 14px;border-radius:14px;font-size:14px;line-height:1.55;max-width:88%;white-space:pre-wrap}
 .msg.u{align-self:flex-end;background:linear-gradient(180deg,var(--or),#dd711a);color:#150c04}
@@ -114,42 +126,42 @@ h1{font-family:Dongle;font-size:44px;font-weight:700;line-height:.95}
 <div class="fog"></div>
 
 <header class="bar">
-  <a class="brand" href="#/">DARK<span>.</span></a>
-  <div class="status">
-    <span id="clock">--:--</span>
-    <span id="batt">--%</span>
-    <span class="dot"></span>
-  </div>
+ <a class="brand" href="#/">DARK<span>.</span></a>
+ <div class="status">
+ <span id="clock">--:--</span>
+ <span id="batt">--%</span>
+ <span class="dot"></span>
+ </div>
 </header>
 
 <main id="view"></main>
 
 <nav class="dock">
-  <a href="#/" data-r="/"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
-  <a href="#/navegar" data-r="/navegar"><i class="fa-solid fa-globe"></i><span>Navegar</span></a>
-  <a href="#/youtube" data-r="/youtube"><i class="fa-brands fa-youtube"></i><span>YouTube</span></a>
-  <a href="#/social" data-r="/social"><i class="fa-solid fa-hashtag"></i><span>Social</span></a>
-  <a href="#/musica" data-r="/musica"><i class="fa-solid fa-headphones"></i><span>Música</span></a>
-  <a href="#/pelis" data-r="/pelis"><i class="fa-solid fa-film"></i><span>Películas</span></a>
-  <a href="#/series" data-r="/series"><i class="fa-solid fa-tv"></i><span>Series</span></a>
-  <a href="#/juegos" data-r="/juegos"><i class="fa-solid fa-gamepad"></i><span>Juegos</span></a>
-  <a href="#/ia" data-r="/ia"><i class="fa-solid fa-wand-magic-sparkles"></i><span>IA</span></a>
-  <a href="#/cuentas" data-r="/cuentas"><i class="fa-solid fa-user-astronaut"></i><span>Cuentas</span></a>
+ <a href="#/" data-r="/"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
+ <a href="#/navegar" data-r="/navegar"><i class="fa-solid fa-globe"></i><span>Navegar</span></a>
+ <a href="#/youtube" data-r="/youtube"><i class="fa-brands fa-youtube"></i><span>YouTube</span></a>
+ <a href="#/social" data-r="/social"><i class="fa-solid fa-hashtag"></i><span>Social</span></a>
+ <a href="#/musica" data-r="/musica"><i class="fa-solid fa-headphones"></i><span>Música</span></a>
+ <a href="#/pelis" data-r="/pelis"><i class="fa-solid fa-film"></i><span>Películas</span></a>
+ <a href="#/series" data-r="/series"><i class="fa-solid fa-tv"></i><span>Series</span></a>
+ <a href="#/juegos" data-r="/juegos"><i class="fa-solid fa-gamepad"></i><span>Juegos</span></a>
+ <a href="#/ia" data-r="/ia"><i class="fa-solid fa-wand-magic-sparkles"></i><span>IA</span></a>
+ <a href="#/cuentas" data-r="/cuentas"><i class="fa-solid fa-user-astronaut"></i><span>Cuentas</span></a>
 </nav>
 
 <div id="camo" class="camo">
-  <div class="docs">
-    <div class="docs-top"><b>Documento sin título</b><span>Archivo &nbsp; Editar &nbsp; Ver &nbsp; Insertar &nbsp; Formato</span></div>
-    <div class="docs-body">
-      <h2>Apuntes de clase</h2>
-      <p><b>1. La célula.</b> Unidad estructural y funcional de los seres vivos. Está formada por membrana plasmática, citoplasma y material genético.</p>
-      <p><b>2. Tipos.</b> Procariota (sin núcleo) y eucariota (con núcleo). Los orgánulos celulares cumplen funciones específicas.</p>
-      <p><b>3. Mitosis.</b> Proceso de división celular que genera dos células hijas idénticas a la madre.</p>
-      <p><b>4. Ejercicios.</b> Página 34, apartados a, b y c del libro de Biología.</p>
-      <p>&nbsp;</p>
-      <p>Pulsa <b>Esc</b> para volver.</p>
-    </div>
-  </div>
+ <div class="docs">
+ <div class="docs-top"><b>Documento sin título</b><span>Archivo &nbsp; Editar &nbsp; Ver &nbsp; Insertar &nbsp; Formato</span></div>
+ <div class="docs-body">
+ <h2>Apuntes de clase</h2>
+ <p><b>1. La célula.</b> Unidad estructural y funcional de los seres vivos. Está formada por membrana plasmática, citoplasma y material genético.</p>
+ <p><b>2. Tipos.</b> Procariota (sin núcleo) y eucariota (con núcleo). Los orgánulos celulares cumplen funciones específicas.</p>
+ <p><b>3. Mitosis.</b> Proceso de división celular que genera dos células hijas idénticas a la madre.</p>
+ <p><b>4. Ejercicios.</b> Página 34, apartados a, b y c del libro de Biología.</p>
+ <p>&nbsp;</p>
+ <p>Pulsa <b>Esc</b> para volver.</p>
+ </div>
+ </div>
 </div>
 
 <script>
@@ -170,170 +182,170 @@ var gameSys='gba';
 var socTab='tiktok';
 
 var PIPED=[
-  'https://api.piped.private.coffee',
-  'https://pipedapi.reallyaweso.me',
-  'https://pipedapi.kavin.rocks',
-  'https://pipedapi.adminforge.de'
+ 'https://api.piped.private.coffee',
+ 'https://pipedapi.reallyaweso.me',
+ 'https://pipedapi.kavin.rocks',
+ 'https://pipedapi.adminforge.de'
 ];
 
 function piped(path){
-  var i=0;
-  return new Promise(function(res){
-    (function next(){
-      if(i>=PIPED.length)return res(null);
-      var base=PIPED[i++];
-      var ctl=new AbortController();
-      var t=setTimeout(function(){ctl.abort()},9000);
-      fetch(base+path,{signal:ctl.signal}).then(function(r){
-        clearTimeout(t);
-        if(!r.ok)return next();
-        return r.json().then(function(j){
-          if(j&&!j.error)return res(j);
-          next();
-        });
-      }).catch(function(){clearTimeout(t);next()});
-    })();
-  });
+ var i=0;
+ return new Promise(function(res){
+ (function next(){
+ if(i>=PIPED.length)return res(null);
+ var base=PIPED[i++];
+ var ctl=new AbortController();
+ var t=setTimeout(function(){ctl.abort()},9000);
+ fetch(base+path,{signal:ctl.signal}).then(function(r){
+ clearTimeout(t);
+ if(!r.ok)return next();
+ return r.json().then(function(j){
+ if(j&&!j.error)return res(j);
+ next();
+ });
+ }).catch(function(){clearTimeout(t);next()});
+ })();
+ });
 }
 
 function head(title){
-  return '<div class="phead"><button class="back" data-back><i class="fa-solid fa-chevron-left"></i></button><div><h1>'+title+'</h1></div></div>';
+ return '<div class="phead"><button class="back" data-back><i class="fa-solid fa-chevron-left"></i></button><div><h1>'+title+'</h1></div></div>';
 }
 
 function viewHome(){
-  var tiles=[
-    ['navegar','fa-solid fa-globe','Navegar','Navegador libre dentro de la página.'],
-    ['youtube','fa-brands fa-youtube','YouTube','Busca y reproduce, con modo solo audio.'],
-    ['social','fa-solid fa-hashtag','Social','TikTok e Instagram, vídeos y perfiles.'],
-    ['musica','fa-solid fa-headphones','Música','Radio 24/7 y buscador sin anuncios.'],
-    ['pelis','fa-solid fa-film','Películas','Catálogo para ver al instante.'],
-    ['series','fa-solid fa-tv','Series','Temporadas y episodios.'],
-    ['juegos','fa-solid fa-gamepad','Juegos','Web, consolas, indies, Flash y DOS.'],
-    ['ia','fa-solid fa-wand-magic-sparkles','IA','Chat sin registro.'],
-    ['cuentas','fa-solid fa-user-astronaut','Cuentas','Tus logins guardados.']
-  ];
-  return '<div class="page"><div class="hero"><h1>DARK</h1>'+
-  '<p>Todo lo que necesitas en el recreo, en un solo sitio. Pulsa un icono: cada cosa abre en su propia pantalla.</p></div>'+
-  '<div class="tiles">'+tiles.map(function(t){
-    return '<a class="tile" href="#/'+t[0]+'"><i class="'+t[1]+'"></i><b>'+t[2]+'</b><small>'+t[3]+'</small></a>';
-  }).join('')+'</div>'+
-  '<p class="note">Pulsa <b>Esc</b> en cualquier momento para poner la pantalla de Google Docs.</p></div>';
+ var tiles=[
+ ['navegar','fa-solid fa-globe','Navegar','Navegador libre dentro de la página.'],
+ ['youtube','fa-brands fa-youtube','YouTube','Busca y reproduce, con modo solo audio.'],
+ ['social','fa-solid fa-hashtag','Social','TikTok e Instagram, vídeos y perfiles.'],
+ ['musica','fa-solid fa-headphones','Música','Radio 24/7 y buscador sin anuncios.'],
+ ['pelis','fa-solid fa-film','Películas','Catálogo para ver al instante.'],
+ ['series','fa-solid fa-tv','Series','Temporadas y episodios.'],
+ ['juegos','fa-solid fa-gamepad','Juegos','Web, consolas, indies, Flash y DOS.'],
+ ['ia','fa-solid fa-wand-magic-sparkles','IA','Chat sin registro.'],
+ ['cuentas','fa-solid fa-user-astronaut','Cuentas','Tus logins guardados.']
+ ];
+ return '<div class="page"><div class="hero"><h1>DARK</h1>'+
+ '<p>Todo lo que necesitas en el recreo, en un solo sitio. Pulsa un icono: cada cosa abre en su propia pantalla.</p></div>'+
+ '<div class="tiles">'+tiles.map(function(t){
+ return '<a class="tile" href="#/'+t[0]+'"><i class="'+t[1]+'"></i><b>'+t[2]+'</b><small>'+t[3]+'</small></a>';
+ }).join('')+'</div>'+
+ '<p class="note">Pulsa <b>Esc</b> en cualquier momento para poner la pantalla de Google Docs.</p></div>';
 }
 
 function viewNavegar(){
-  return '<div class="page">'+head('Navegar')+
-  '<p class="sub">Escribe una dirección o busca. Se abre aquí dentro.</p>'+
-  '<form class="search" id="navform" style="margin-top:14px"><input id="navq" placeholder="direccion.com o lo que quieras buscar" autocomplete="off"><button type="submit"><i class="fa-solid fa-arrow-right"></i></button></form>'+
-  '<div class="row" id="navshort"></div>'+
-  '<div class="now" id="navnow">Nada cargado.</div>'+
-  '<div class="frame tall" id="navframe" style="display:none"></div>'+
-  '<p class="note">Muchas webs se dejan meter; otras no. Si sale el marco en negro, usa el botón de abrir fuera.</p></div>';
+ return '<div class="page">'+head('Navegar')+
+ '<p class="sub">Escribe una dirección o busca. Se abre aquí dentro.</p>'+
+ '<form class="search" id="navform" style="margin-top:14px"><input id="navq" placeholder="direccion.com o lo que quieras buscar" autocomplete="off"><button type="submit"><i class="fa-solid fa-arrow-right"></i></button></form>'+
+ '<div class="row" id="navshort"></div>'+
+ '<div class="now" id="navnow">Nada cargado.</div>'+
+ '<div class="frame tall" id="navframe" style="display:none"></div>'+
+ '<p class="note">Muchas webs se dejan meter; otras no. Si sale el marco en negro, usa el botón de abrir fuera.</p></div>';
 }
 
 function viewYoutube(){
-  return '<div class="page">'+head('YouTube')+
-  '<div class="seg" id="ytseg"><button data-mode="video" class="'+(ytMode==='video'?'on':'')+'">Vídeo</button><button data-mode="audio" class="'+(ytMode==='audio'?'on':'')+'">Solo audio</button></div>'+
-  '<form class="search" id="ytform"><input id="ytq" placeholder="Buscar en YouTube..." autocomplete="off"><button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button></form>'+
-  '<div class="player" id="ytplayer"></div>'+
-  '<div class="pbar" id="ytbar"></div>'+
-  '<div class="grid" id="ytres"><p class="empty">Escribe algo y pulsa buscar.</p></div>'+
-  '<p class="note">La reproducción va directa por proxy, sin iframe de YouTube, así que no salta el error de configuración ni los anuncios.</p></div>';
+ return '<div class="page">'+head('YouTube')+
+ '<div class="seg" id="ytseg"><button data-mode="video" class="'+(ytMode==='video'?'on':'')+'">Vídeo</button><button data-mode="audio" class="'+(ytMode==='audio'?'on':'')+'">Solo audio</button></div>'+
+ '<form class="search" id="ytform"><input id="ytq" placeholder="Buscar en YouTube..." autocomplete="off"><button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button></form>'+
+ '<div class="player" id="ytplayer"></div>'+
+ '<div class="pbar" id="ytbar"></div>'+
+ '<div class="grid" id="ytres"><p class="empty">Escribe algo y pulsa buscar.</p></div>'+
+ '<p class="note">La reproducción va directa por proxy, sin iframe de YouTube, así que no salta el error de configuración ni los anuncios.</p></div>';
 }
 
 var SOC_SUG={
-  tiktok:[['tiktok','@tiktok'],['khaby.lame','@khaby.lame'],['mrbeast','@mrbeast'],['zachking','@zachking'],['charlidamelio','@charlidamelio'],['therock','@therock'],['bellapoarch','@bellapoarch'],['spencerx','@spencerx']],
-  instagram:[['instagram','@instagram'],['nasa','@nasa'],['natgeo','@natgeo'],['cristiano','@cristiano'],['leomessi','@leomessi'],['nike','@nike'],['9gag','@9gag'],['bbcearth','@bbcearth'],['tasty','@tasty']]
+ tiktok:[['tiktok','@tiktok'],['khaby.lame','@khaby.lame'],['mrbeast','@mrbeast'],['zachking','@zachking'],['charlidamelio','@charlidamelio'],['therock','@therock'],['bellapoarch','@bellapoarch'],['spencerx','@spencerx']],
+ instagram:[['instagram','@instagram'],['nasa','@nasa'],['natgeo','@natgeo'],['cristiano','@cristiano'],['leomessi','@leomessi'],['nike','@nike'],['9gag','@9gag'],['bbcearth','@bbcearth'],['tasty','@tasty']]
 };
 
 function viewSocial(){
-  return '<div class="page">'+head('Social')+
-  '<div class="seg" id="socseg"><button data-tab="tiktok" class="'+(socTab==='tiktok'?'on':'')+'">TikTok</button><button data-tab="instagram" class="'+(socTab==='instagram'?'on':'')+'">Instagram</button></div>'+
-  '<form class="search" id="socform"><input id="socq" placeholder="Usuario, o pega un enlace de vídeo..." autocomplete="off"><button type="submit"><i class="fa-solid fa-arrow-right"></i></button></form>'+
-  '<div class="row" id="socsug"></div>'+
-  '<div class="now" id="socnow">Nada cargado.</div>'+
-  '<div class="frame tall" id="socframe" style="display:none"></div>'+
-  '<p class="note">Abre perfiles y vídeos dentro de la página. Pega un enlace de vídeo o reel concreto y se reproduce aquí. Si un perfil sale vacío, abre el enlace en pestaña nueva.</p></div>';
+ return '<div class="page">'+head('Social')+
+ '<div class="seg" id="socseg"><button data-tab="tiktok" class="'+(socTab==='tiktok'?'on':'')+'">TikTok</button><button data-tab="instagram" class="'+(socTab==='instagram'?'on':'')+'">Instagram</button></div>'+
+ '<form class="search" id="socform"><input id="socq" placeholder="Usuario, o pega un enlace de vídeo..." autocomplete="off"><button type="submit"><i class="fa-solid fa-arrow-right"></i></button></form>'+
+ '<div class="row" id="socsug"></div>'+
+ '<div class="now" id="socnow">Nada cargado.</div>'+
+ '<div class="frame tall" id="socframe" style="display:none"></div>'+
+ '<p class="note">Abre perfiles y vídeos dentro de la página. Pega un enlace de vídeo o reel concreto y se reproduce aquí. Si un perfil sale vacío, abre el enlace en pestaña nueva.</p></div>';
 }
 
 function ice(id){
-  return [
-    'https://ice1.somafm.com/'+id+'-128-mp3',
-    'https://ice2.somafm.com/'+id+'-128-mp3',
-    'https://ice4.somafm.com/'+id+'-128-mp3',
-    'https://ice6.somafm.com/'+id+'-128-mp3'
-  ];
+ return [
+ 'https://ice1.somafm.com/'+id+'-128-mp3',
+ 'https://ice2.somafm.com/'+id+'-128-mp3',
+ 'https://ice4.somafm.com/'+id+'-128-mp3',
+ 'https://ice6.somafm.com/'+id+'-128-mp3'
+ ];
 }
 
 var STATIONS=[
-  {n:'Radio Paradise',t:'Eclectic rock',u:['https://stream.radioparadise.com/mp3-128','https://stream.radioparadise.com/aac-128']},
-  {n:'RP Mellow Mix',t:'Tranquilo',u:['https://stream.radioparadise.com/mellow-128']},
-  {n:'RP Rock Mix',t:'Rock',u:['https://stream.radioparadise.com/rock-128']},
-  {n:'RP Global Mix',t:'World',u:['https://stream.radioparadise.com/global-128']},
-  {n:'RP Bossa Mix',t:'Bossa nova',u:['https://stream.radioparadise.com/bossa-128']},
-  {n:'RP Eclectic Mix',t:'Variado',u:['https://stream.radioparadise.com/eclectic-128']},
-  {n:'Nightride FM',t:'Synthwave',u:['https://stream.nightride.fm/nightride.mp3']},
-  {n:'Chill Synth',t:'Chillwave',u:['https://stream.nightride.fm/chillsynth.mp3']},
-  {n:'Datawave',t:'Darksynth',u:['https://stream.nightride.fm/datawave.mp3']},
-  {n:'Space Synth',t:'Synthwave',u:['https://stream.nightride.fm/spacesynth.mp3']},
-  {n:'Groove Salad',t:'Ambient',u:ice('groovesalad')},
-  {n:'Drone Zone',t:'Ambient',u:ice('dronezone')},
-  {n:'Secret Agent',t:'Lounge',u:ice('secretagent')},
-  {n:'Indie Pop Rocks',t:'Indie',u:ice('indiepop')},
-  {n:'Underground 80s',t:'Synth pop',u:ice('u80s')},
-  {n:'Beat Blender',t:'Deep house',u:ice('beatblender')},
-  {n:'Lush',t:'Vocal',u:ice('lush')},
-  {n:'Fluid',t:'Instrumental hip hop',u:ice('fluid')},
-  {n:'Left Coast 70s',t:'Rock',u:ice('seventies')},
-  {n:'Boot Liquor',t:'Country',u:ice('bootliquor')},
-  {n:'Space Station Soma',t:'Electrónica',u:ice('spacestation')},
-  {n:'Deep Space One',t:'Ambient espacial',u:ice('deepspaceone')},
-  {n:'Suburbs of Goa',t:'World',u:ice('suburbsofgoa')},
-  {n:'Sonic Universe',t:'Jazz',u:ice('sonicuniverse')},
-  {n:'Illinois Street Lounge',t:'Lounge',u:ice('illstreet')},
-  {n:'Digitalis',t:'Indie',u:ice('digitalis')},
-  {n:'Folk Forward',t:'Folk',u:ice('folkfwd')},
-  {n:'Covers',t:'Versiones',u:ice('covers')},
-  {n:'Cliqhop',t:'Hip hop',u:ice('cliqhop')}
+ {n:'Radio Paradise',t:'Eclectic rock',u:['https://stream.radioparadise.com/mp3-128','https://stream.radioparadise.com/aac-128']},
+ {n:'RP Mellow Mix',t:'Tranquilo',u:['https://stream.radioparadise.com/mellow-128']},
+ {n:'RP Rock Mix',t:'Rock',u:['https://stream.radioparadise.com/rock-128']},
+ {n:'RP Global Mix',t:'World',u:['https://stream.radioparadise.com/global-128']},
+ {n:'RP Bossa Mix',t:'Bossa nova',u:['https://stream.radioparadise.com/bossa-128']},
+ {n:'RP Eclectic Mix',t:'Variado',u:['https://stream.radioparadise.com/eclectic-128']},
+ {n:'Nightride FM',t:'Synthwave',u:['https://stream.nightride.fm/nightride.mp3']},
+ {n:'Chill Synth',t:'Chillwave',u:['https://stream.nightride.fm/chillsynth.mp3']},
+ {n:'Datawave',t:'Darksynth',u:['https://stream.nightride.fm/datawave.mp3']},
+ {n:'Space Synth',t:'Synthwave',u:['https://stream.nightride.fm/spacesynth.mp3']},
+ {n:'Groove Salad',t:'Ambient',u:ice('groovesalad')},
+ {n:'Drone Zone',t:'Ambient',u:ice('dronezone')},
+ {n:'Secret Agent',t:'Lounge',u:ice('secretagent')},
+ {n:'Indie Pop Rocks',t:'Indie',u:ice('indiepop')},
+ {n:'Underground 80s',t:'Synth pop',u:ice('u80s')},
+ {n:'Beat Blender',t:'Deep house',u:ice('beatblender')},
+ {n:'Lush',t:'Vocal',u:ice('lush')},
+ {n:'Fluid',t:'Instrumental hip hop',u:ice('fluid')},
+ {n:'Left Coast 70s',t:'Rock',u:ice('seventies')},
+ {n:'Boot Liquor',t:'Country',u:ice('bootliquor')},
+ {n:'Space Station Soma',t:'Electrónica',u:ice('spacestation')},
+ {n:'Deep Space One',t:'Ambient espacial',u:ice('deepspaceone')},
+ {n:'Suburbs of Goa',t:'World',u:ice('suburbsofgoa')},
+ {n:'Sonic Universe',t:'Jazz',u:ice('sonicuniverse')},
+ {n:'Illinois Street Lounge',t:'Lounge',u:ice('illstreet')},
+ {n:'Digitalis',t:'Indie',u:ice('digitalis')},
+ {n:'Folk Forward',t:'Folk',u:ice('folkfwd')},
+ {n:'Covers',t:'Versiones',u:ice('covers')},
+ {n:'Cliqhop',t:'Hip hop',u:ice('cliqhop')}
 ];
 
 function viewMusica(){
-  return '<div class="page">'+head('Música')+
-  '<p class="sub">Radio en directo, sin anuncios ni cortes.</p>'+
-  '<div class="audio-box" style="margin-top:16px"><div class="wave" id="radwave"><i></i><i></i><i></i><i></i></div><audio id="rad" controls preload="none"></audio></div>'+
-  '<div class="now" id="radnow">Ninguna emisora puesta.</div>'+
-  '<div class="grid" id="radgrid">'+STATIONS.map(function(s,i){
-    return '<div class="card" data-st="'+i+'"><div class="poster">'+esc(s.n)+'<small>'+esc(s.t)+'</small></div></div>';
-  }).join('')+'</div>'+
-  '<h1 style="font-size:34px;margin-top:30px">Buscar canción</h1>'+
-  '<p class="sub">Audio directo de YouTube, sin anuncios.</p>'+
-  '<form class="search" id="musform" style="margin-top:14px"><input id="musq" placeholder="Canción o artista..." autocomplete="off"><button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button></form>'+
-  '<div class="audio-box" id="musbox" style="display:none;align-items:flex-start"><div class="wave" id="muswave" style="margin-top:8px"><i></i><i></i><i></i><i></i></div><div style="flex:1;min-width:0"><div id="mustitle" style="font-size:13px;margin-bottom:6px"></div><div id="musplayer"></div><div id="musmsg" class="note"></div></div></div>'+
-  '<div class="grid" id="musres"></div>'+
-  '<p class="note">Si una emisora no suena, se cambia sola al servidor de reserva.</p></div>';
+ return '<div class="page">'+head('Música')+
+ '<p class="sub">Radio en directo, sin anuncios ni cortes.</p>'+
+ '<div class="audio-box" style="margin-top:16px"><div class="wave" id="radwave"><i></i><i></i><i></i><i></i></div><audio id="rad" controls preload="none"></audio></div>'+
+ '<div class="now" id="radnow">Ninguna emisora puesta.</div>'+
+ '<div class="grid" id="radgrid">'+STATIONS.map(function(s,i){
+ return '<div class="card" data-st="'+i+'"><div class="poster">'+esc(s.n)+'<small>'+esc(s.t)+'</small></div></div>';
+ }).join('')+'</div>'+
+ '<h1 style="font-size:34px;margin-top:30px">Buscar canción</h1>'+
+ '<p class="sub">Audio directo de YouTube, sin anuncios.</p>'+
+ '<form class="search" id="musform" style="margin-top:14px"><input id="musq" placeholder="Canción o artista..." autocomplete="off"><button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button></form>'+
+ '<div class="audio-box" id="musbox" style="display:none;align-items:flex-start"><div class="wave" id="muswave" style="margin-top:8px"><i></i><i></i><i></i><i></i></div><div style="flex:1;min-width:0"><div id="mustitle" style="font-size:13px;margin-bottom:6px"></div><div id="musplayer"></div><div id="musmsg" class="note"></div></div></div>'+
+ '<div class="grid" id="musres"></div>'+
+ '<p class="note">Si una emisora no suena, se cambia sola al servidor de reserva.</p></div>';
 }
 
-var FILMS=[[27205,'Origen',2010],[157336,'Interstellar',2014],[155,'El caballero oscuro',2008],[550,'El club de la lucha',1999],[680,'Pulp Fiction',1994],[603,'Matrix',1999],[808,'Shrek',2001],[862,'Toy Story',1995],[12,'Buscando a Nemo',2003],[585,'Monstruos S.A.',2001],[14160,'Up',2009],[10681,'WALL·E',2008],[2062,'Ratatouille',2007],[920,'Cars',2006],[324857,'Spider-Man: Un nuevo universo',2018],[299536,'Vengadores: Infinity War',2018],[299534,'Vengadores: Endgame',2019],[1726,'Iron Man',2008],[475557,'Joker',2019],[872585,'Oppenheimer',2023],[438631,'Dune',2021],[693134,'Dune: Parte 2',2024],[335984,'Blade Runner 2049',2017],[76341,'Mad Max: Furia en la carretera',2015],[245891,'John Wick',2014],[98,'Gladiator',2000],[597,'Titanic',1997],[19995,'Avatar',2009],[76600,'Avatar: El sentido del agua',2022],[361743,'Top Gun: Maverick',2022],[244786,'Whiplash',2014],[313369,'La La Land',2016],[496243,'Parásitos',2019],[129,'El viaje de Chihiro',2001],[372058,'Your Name',2016],[149,'Akira',1988],[12477,'La tumba de las luciérnagas',1988],[128,'La princesa Mononoke',1997],[4935,'El castillo ambulante',2004],[8392,'Mi vecino Totoro',1988],[354912,'Coco',2017],[508442,'Soul',2020],[150540,'Del revés',2015],[568124,'Encanto',2021],[109445,'Frozen',2013],[8587,'El rey león',1994],[812,'Aladdin',1992],[22,'Piratas del Caribe',2003],[671,'Harry Potter y la piedra filosofal',2001],[120,'El señor de los anillos',2001],[238,'El padrino',1972],[769,'Uno de los nuestros',1990],[111,'Scarface',1983],[280,'Terminator 2',1991],[348,'Alien',1979],[694,'El resplandor',1980],[419430,'Déjame salir',2017],[545611,'Todo a la vez en todas partes',2022],[346698,'Barbie',2023],[293660,'Deadpool',2016],[118340,'Guardianes de la Galaxia',2014],[284054,'Black Panther',2018],[634649,'Spider-Man: No Way Home',2021],[414906,'The Batman',2022],[64690,'Drive',2011],[339403,'Baby Driver',2017],[22538,'Scott Pilgrim',2010],[333339,'Ready Player One',2018],[550988,'Free Guy',2021],[20526,'Tron: Legacy',2010],[82690,'¡Rompe Ralph!',2012],[177572,'Big Hero 6',2014],[269149,'Zootrópolis',2016],[277834,'Moana',2016],[9502,'Kung Fu Panda',2008],[38055,'Megamind',2010],[20352,'Gru: Mi villano favorito',2010],[9806,'Los Increíbles',2004],[508943,'Luca',2021],[508947,'Red',2022],[976573,'Elemental',2023],[502356,'Super Mario Bros: La película',2023],[454626,'Sonic',2020],[456740,'Detective Pikachu',2019],[329,'Jurassic Park',1993],[105,'Regreso al futuro',1985],[11,'Star Wars: Una nueva esperanza',1977],[1891,'El imperio contraataca',1980],[1892,'El retorno del Jedi',1983],[330459,'Rogue One',2016],[85,'Indiana Jones',1981],[620,'Cazafantasmas',1984],[601,'E.T.',1982],[771,'Solo en casa',1990],[10719,'Elf',2003],[9479,'Pesadilla antes de Navidad',1993],[14836,'Coraline',2009],[4011,'Bitelchús',1988]];
+var FILMS=[[27205,'Origen',2010],[157336,'Interstellar',2014],[155,'El caballero oscuro',2008],[680,'Pulp Fiction',1994],[603,'Matrix',1999],[808,'Shrek',2008],[862,'Toy Story',1995],[12,'Buscando a Nemo',2003],[585,'Monstruos S.A.',2001],[14160,'Up',2009],[10681,'WALL·E',2008],[2062,'Ratatouille',2007],[920,'Cars',2006],[324857,'Spider-Man: Un nuevo universo',2018],[299536,'Vengadores: Infinity War',2018],[299534,'Vengadores: Endgame',2019],[1726,'Iron Man',2008],[475557,'Joker',2019],[872585,'Oppenheimer',2023],[438631,'Dune',2021],[693134,'Dune: Parte 2',2024],[335984,'Blade Runner 2049',2017],[76341,'Mad Max: Furia en la carretera',2015],[245891,'John Wick',2014],[98,'Gladiator',2000],[597,'Titanic',1997],[19995,'Avatar',2009],[76600,'Avatar: El sentido del agua',2022],[361743,'Top Gun: Maverick',2022],[244786,'Whiplash',2014],[313369,'La La Land',2016],[496243,'Parásitos',2019],[129,'El viaje de Chihiro',2001],[372058,'Your Name',2016],[149,'Akira',1988],[12477,'La tumba de las luciérnagas',1988],[128,'La princesa Mononoke',1997],[4935,'El castillo ambulante',2004],[8392,'Mi vecino Totoro',1988],[354912,'Coco',2017],[508442,'Soul',2020],[150540,'Del revés',2015],[568124,'Encanto',2021],[109445,'Frozen',2013],[8587,'El rey león',1994],[812,'Aladdin',1992],[22,'Piratas del Caribe',2003],[671,'Harry Potter y la piedra filosofal',2001],[120,'El señor de los anillos',2001],[238,'El padrino',1972],[769,'Uno de los nuestros',1990],[111,'Scarface',1983],[280,'Terminator 2',1991],[348,'Alien',1979],[694,'El resplandor',1980],[419430,'Déjame salir',2017],[545611,'Todo a la vez en todas partes',2022],[346698,'Barbie',2023],[293660,'Deadpool',2016],[118340,'Guardianes de la Galaxia',2014],[284054,'Black Panther',2018],[634649,'Spider-Man: No Way Home',2021],[414906,'The Batman',2022],[64690,'Drive',2011],[339403,'Baby Driver',2017],[22538,'Scott Pilgrim',2010],[333339,'Ready Player One',2018],[550988,'Free Guy',2021],[20526,'Tron: Legacy',2010],[82690,'¡Rompe Ralph!',2012],[177572,'Big Hero 6',2014],[269149,'Zootrópolis',2016],[277834,'Moana',2016],[976573,'Elemental',2023],[502356,'Super Mario Bros: La película',2023],[454626,'Sonic',2020],[456740,'Detective Pikachu',2019],[329,'Jurassic Park',1993],[105,'Regreso al futuro',1985],[11,'Star Wars: Una nueva esperanza',1977],[1891,'El imperio contraataca',1980],[1892,'El retorno del Jedi',1983],[330459,'Rogue One',2016],[85,'Indiana Jones',1981],[620,'Cazafantasmas',1984],[601,'E.T.',1982],[771,'Solo en casa',1990],[10719,'Elf',2003],[9479,'Pesadilla antes de Navidad',1993],[14836,'Coraline',2009],[4011,'Bitelchús',1988]];
 
 var SERIES=[[1396,'Breaking Bad'],[66732,'Stranger Things'],[2316,'The Office'],[1668,'Friends'],[1399,'Juego de Tronos'],[82856,'The Mandalorian'],[84958,'Loki'],[85271,'WandaVision'],[93405,'El juego del calamar'],[70523,'Dark'],[71446,'La casa de papel'],[1402,'The Walking Dead'],[60625,'Rick y Morty'],[61249,'Bojack Horseman'],[94605,'Arcane'],[76479,'The Boys'],[60574,'Peaky Blinders'],[87108,'Chernobyl'],[60059,'Better Call Saul'],[100088,'The Last of Us'],[119051,'Merlina'],[46260,'Naruto'],[1429,'Ataque a los Titanes'],[13916,'Death Note'],[85937,'Demon Slayer'],[95479,'Jujutsu Kaisen'],[12971,'Dragon Ball Z'],[15260,'Hora de aventuras'],[40075,'Gravity Falls'],[39835,'Historias corrientes'],[387,'Bob Esponja'],[246,'Avatar: La leyenda de Aang'],[82684,'Bluey']];
 
 function viewPelis(){
-  return '<div class="page">'+head('Películas')+
-  '<div class="player on" id="filmplayer" style="display:none"></div>'+
-  '<div class="row" id="fservers"></div>'+
-  '<div class="grid" id="filmgrid">'+FILMS.map(function(f){
-    return '<div class="card" data-film="'+f[0]+'"><div class="poster">'+esc(f[1])+'<small>'+f[2]+'</small></div></div>';
-  }).join('')+'</div></div>';
+ return '<div class="page">'+head('Películas')+
+ '<div class="player on" id="filmplayer" style="display:none"></div>'+
+ '<div class="row" id="fservers"></div>'+
+ '<div class="grid" id="filmgrid">'+FILMS.map(function(f){
+ return '<div class="card" data-film="'+f[0]+'"><div class="poster">'+esc(f[1])+'<small>'+f[2]+'</small></div></div>';
+ }).join('')+'</div></div>';
 }
 
 function viewSeries(){
-  return '<div class="page">'+head('Series')+
-  '<div class="player on" id="serplayer" style="display:none"></div>'+
-  '<div class="row" id="serservers"></div>'+
-  '<div class="row"><label class="pill">Temporada <input id="sseason" type="number" min="1" value="1" style="width:52px;background:transparent;border:0;outline:0;color:var(--or)"></label>'+
-  '<label class="pill">Episodio <input id="sep" type="number" min="1" value="1" style="width:52px;background:transparent;border:0;outline:0;color:var(--or)"></label></div>'+
-  '<div class="grid">'+SERIES.map(function(s){
-    return '<div class="card" data-ser="'+s[0]+'"><div class="poster">'+esc(s[1])+'<small>Serie</small></div></div>';
-  }).join('')+'</div></div>';
+ return '<div class="page">'+head('Series')+
+ '<div class="player on" id="serplayer" style="display:none"></div>'+
+ '<div class="row" id="serservers"></div>'+
+ '<div class="row"><label class="pill">Temporada <input id="sseason" type="number" min="1" value="1" style="width:52px;background:transparent;border:0;outline:0;color:var(--or)"></label>'+
+ '<label class="pill">Episodio <input id="sep" type="number" min="1" value="1" style="width:52px;background:transparent;border:0;outline:0;color:var(--or)"></label></div>'+
+ '<div class="grid">'+SERIES.map(function(s){
+ return '<div class="card" data-ser="'+s[0]+'"><div class="poster">'+esc(s[1])+'<small>Serie</small></div></div>';
+ }).join('')+'</div></div>';
 }
 
 var SYS=[['gba','Game Boy Advance'],['snes','Super Nintendo'],['nes','NES'],['gb','Game Boy'],['n64','Nintendo 64']];
@@ -375,590 +387,567 @@ var WEB=[
 ];
 
 function viewJuegos(){
-  var custom=get('games',[]);
-  return '<div class="page">'+head('Juegos')+
-  '<h1 style="font-size:34px">Web</h1>'+
-  '<p class="sub">Cientos de juegos en el navegador. Si una fuente no va, cambia con los botones.</p>'+
-  '<div class="grid" id="webgrid" style="margin-top:14px">'+WEB.map(function(g,i){
-    return '<div class="card" data-web="'+i+'"><div class="poster">'+esc(g[1])+'<small>juego web</small></div></div>';
-  }).join('')+'</div>'+
-  '<div class="row" id="websrc"></div>'+
-  '<div class="frame tall" id="webframe" style="display:none"></div>'+
-  '<form class="search" id="gameform" style="margin-top:16px"><input id="gname" placeholder="Nombre" style="flex:0 0 140px"><input id="gurl" placeholder="Pega la URL de un juego..." required><button type="submit"><i class="fa-solid fa-plus"></i></button></form>'+
-  '<p class="note">Añade cualquier juego que encuentres y se guarda en este dispositivo.</p>'+
-  '<h1 style="font-size:34px;margin-top:36px">Consolas</h1>'+
-  '<div class="row" id="sysrow">'+SYS.map(function(s){
-    return '<button class="pill'+(s[0]===gameSys?' on':'')+'" data-sys="'+s[0]+'">'+s[1]+'</button>';
-  }).join('')+'</div>'+
-  '<div class="frame" id="gameframe" style="display:none"></div>'+
-  '<div class="grid" id="gamegrid">'+GAMES.filter(function(g){return g[0]===gameSys}).map(function(g){
-    return '<div class="card" data-gsys="'+g[0]+'" data-slug="'+g[1]+'"><div class="poster">'+esc(g[2])+'<small>'+g[0].toUpperCase()+'</small></div></div>';
-  }).join('')+'</div>'+
-  '<h1 style="font-size:34px;margin-top:36px">Tus juegos</h1>'+
-  '<div class="grid" id="customgrid" style="margin-top:14px">'+(custom.length?custom.map(function(g,i){
-    return '<div class="card" data-custom="'+i+'"><div class="x" data-delgame="'+i+'"><i class="fa-solid fa-xmark"></i></div><div class="poster">'+esc(g.n)+'<small>tuyo</small></div></div>';
-  }).join(''):'<p class="empty">Aun no has añadido ninguno.</p>')+'</div>'+
-  '<div class="frame tall" id="indieframe" style="display:none"></div>'+
-  '<h1 style="font-size:34px;margin-top:36px">Flash y DOS</h1>'+
-  '<div class="row"><button class="pill" id="flashdemo">Demo Flash</button><button class="pill" id="dosdoom">DOOM (DOS)</button></div>'+
-  '<div id="extframe"></div>'+
-  '<h1 style="font-size:34px;margin-top:36px">En la nube</h1>'+
-  '<div class="grid"><a class="card" href="https://www.xbox.com/play" target="_blank"><div class="poster">Xbox Cloud<small>Fortnite</small></div></a>'+
-  '<a class="card" href="https://play.geforcenow.com" target="_blank"><div class="poster">GeForce NOW<small>GTA</small></div></a>'+
-  '<a class="card" href="https://now.gg" target="_blank"><div class="poster">now.gg<small>Movil</small></div></a></div></div>';
+ var custom=get('games',[]);
+ return '<div class="page">'+head('Juegos')+
+ '<h1 style="font-size:34px">Web</h1>'+
+ '<p class="sub">Cientos de juegos en el navegador. Si una fuente no va, cambia con los botones.</p>'+
+ '<div class="grid" id="webgrid" style="margin-top:14px">'+WEB.map(function(g,i){
+ return '<div class="card" data-web="'+i+'"><div class="poster">'+esc(g[1])+'<small>juego web</small></div></div>';
+ }).join('')+'</div>'+
+ '<div class="row" id="websrc"></div>'+
+ '<div class="frame tall" id="webframe" style="display:none"></div>'+
+ '<form class="search" id="gameform" style="margin-top:16px"><input id="gname" placeholder="Nombre" style="flex:0 0 140px"><input id="gurl" placeholder="Pega la URL de un juego..." required><button type="submit"><i class="fa-solid fa-plus"></i></button></form>'+
+ '<p class="note">Añade cualquier juego que encuentres y se guarda en este dispositivo.</p>'+
+ '<h1 style="font-size:34px;margin-top:36px">Consolas</h1>'+
+ '<div class="row" id="sysrow">'+SYS.map(function(s){
+ return '<button class="pill'+(s[0]===gameSys?' on':'')+'" data-sys="'+s[0]+'">'+s[1]+'</button>';
+ }).join('')+'</div>'+
+ '<div class="frame" id="gameframe" style="display:none"></div>'+
+ '<div class="grid" id="gamegrid">'+GAMES.filter(function(g){return g[0]===gameSys}).map(function(g){
+ return '<div class="card" data-gsys="'+g[0]+'" data-slug="'+g[1]+'"><div class="poster">'+esc(g[2])+'<small>'+g[0].toUpperCase()+'</small></div></div>';
+ }).join('')+'</div>'+
+ '<h1 style="font-size:34px;margin-top:36px">Tus juegos</h1>'+
+ '<div class="grid" id="customgrid" style="margin-top:14px">'+(custom.length?custom.map(function(g,i){
+ return '<div class="card" data-custom="'+i+'"><div class="x" data-delgame="'+i+'"><i class="fa-solid fa-xmark"></i></div><div class="poster">'+esc(g.n)+'<small>tuyo</small></div></div>';
+ }).join(''):'<p class="empty">Aun no has añadido ninguno.</p>')+'</div>'+
+ '<div class="frame tall" id="indieframe" style="display:none"></div>'+
+ '<h1 style="font-size:34px;margin-top:36px">Flash y DOS</h1>'+
+ '<div class="row"><button class="pill" id="flashdemo">Demo Flash</button><button class="pill" id="dosdoom">DOOM (DOS)</button></div>'+
+ '<div id="extframe"></div>'+
+ '<h1 style="font-size:34px;margin-top:36px">En la nube</h1>'+
+ '<div class="grid"><a class="card" href="https://www.xbox.com/play" target="_blank"><div class="poster">Xbox Cloud<small>Fortnite</small></div></a>'+
+ '<a class="card" href="https://play.geforcenow.com" target="_blank"><div class="poster">GeForce NOW<small>GTA</small></div></a>'+
+ '<a class="card" href="https://now.gg" target="_blank"><div class="poster">now.gg<small>Movil</small></div></a></div></div>';
 }
 
 function viewIA(){
-  return '<div class="page">'+head('IA')+
-  '<p class="sub">Chat libre, sin cuenta. Se borra al recargar.</p>'+
-  '<div class="chat" id="chat" style="margin-top:16px"></div>'+
-  '<form class="search" id="iaform"><input id="iaq" placeholder="Pregunta lo que sea..." autocomplete="off"><button type="submit"><i class="fa-solid fa-paper-plane"></i></button></form></div>';
+ return '<div class="page">'+head('IA')+
+ '<p class="sub">Chat libre, sin cuenta. Se borra al recargar.</p>'+
+ '<div class="chat" id="chat" style="margin-top:16px"></div>'+
+ '<form class="search" id="iaform"><input id="iaq" placeholder="Pregunta lo que sea..." autocomplete="off"><button type="submit"><i class="fa-solid fa-paper-plane"></i></button></form></div>';
 }
 
 function viewCuentas(){
-  var accs=get('accs',[]);
-  return '<div class="page">'+head('Cuentas')+
-  '<p class="sub">Se guardan en este dispositivo, no en ningún servidor.</p>'+
-  '<form id="accform" style="margin-top:16px">'+
-  '<div class="acc"><div class="h"><span>Nueva cuenta</span><i class="fa-solid fa-plus"></i></div>'+
-  '<input id="accserv" placeholder="Servicio (Fortnite, GTA V, Xbox...)" required>'+
-  '<input id="accemail" placeholder="Usuario o correo">'+
-  '<input id="accpass" placeholder="Contraseña">'+
-  '<button class="btn" style="margin-top:10px;width:100%" type="submit">Guardar</button></div></form>'+
-  '<div id="acclist">'+(accs.length?accs.map(function(a,i){
-    return '<div class="acc"><div class="h"><span>'+esc(a.s)+'</span><i class="fa-solid fa-trash" data-del="'+i+'" style="cursor:pointer;color:var(--dim)"></i></div>'+
-    '<div style="font-size:13px;color:var(--dim);margin-top:6px">'+esc(a.u||'-')+'</div>'+
-    '<div style="font-size:13px;margin-top:4px;font-family:monospace">'+esc(a.p||'-')+'</div></div>';
-  }).join(''):'<p class="empty">Todavia no has guardado ninguna.</p>')+'</div></div>';
+ var accs=get('accs',[]);
+ return '<div class="page">'+head('Cuentas')+
+ '<p class="sub">Se guardan en este dispositivo, no en ningún servidor.</p>'+
+ '<form id="accform" style="margin-top:16px">'+
+ '<div class="acc"><div class="h"><span>Nueva cuenta</span><i class="fa-solid fa-plus"></i></div>'+
+ '<input id="accserv" placeholder="Servicio (Fortnite, GTA V, Xbox...)" required>'+
+ '<input id="accemail" placeholder="Usuario o correo">'+
+ '<input id="accpass" placeholder="Contraseña">'+
+ '<button class="btn" style="margin-top:10px;width:100%" type="submit">Guardar</button></div></form>'+
+ '<div id="acclist">'+(accs.length?accs.map(function(a,i){
+ return '<div class="acc"><div class="h"><span>'+esc(a.s)+'</span><i class="fa-solid fa-trash" data-del="'+i+'" style="cursor:pointer;color:var(--dim)"></i></div>'+
+ '<div style="font-size:13px;color:var(--dim);margin-top:6px">'+esc(a.u||'-')+'</div>'+
+ '<div style="font-size:13px;margin-top:4px;font-family:monospace">'+esc(a.p||'-')+'</div></div>';
+ }).join(''):'<p class="empty">Todavia no has guardado ninguna.</p>')+'</div></div>';
 }
 
 var MOUNT={};
 
 MOUNT['/navegar']=function(){
-  var frame=document.getElementById('navframe');
-  var now=document.getElementById('navnow');
-  var shorts=[['truffled.lol','https://truffled.lol/'],['Wikipedia','https://es.m.wikipedia.org/'],['DuckDuckGo','https://duckduckgo.com/'],['GitHub','https://github.com/']];
-  document.getElementById('navshort').innerHTML=shorts.map(function(s){
-    return '<button class="pill" data-go="'+s[1]+'">'+esc(s[0])+'</button>';
-  }).join('');
+ var frame=document.getElementById('navframe');
+ var now=document.getElementById('navnow');
+ var shorts=[['truffled.lol','https://truffled.lol/'],['Wikipedia','https://es.m.wikipedia.org/'],['DuckDuckGo','https://duckduckgo.com/'],['GitHub','https://github.com/']];
+ document.getElementById('navshort').innerHTML=shorts.map(function(s){
+ return '<button class="pill" data-go="'+s[1]+'">'+esc(s[0])+'</button>';
+ }).join('');
 
-  function open(url){
-    if(!/^https?:\/\//i.test(url)) url='https://'+url;
-    now.innerHTML='<a href="'+url+'" target="_blank" style="color:var(--or)">Abrir en pestaña nueva</a>';
-    frame.style.display='block';
-    frame.innerHTML='<iframe src="'+url+'" allow="autoplay;encrypted-media;clipboard-write;fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0"></iframe>';
-  }
+ function open(url){
+ if(!/^https?:\/\//i.test(url)) url='https://'+url;
+ now.innerHTML='<a href="'+url+'" target="_blank" style="color:var(--or)">Abrir en pestaña nueva</a>';
+ frame.style.display='block';
+ // Usamos allorigins para evitar bloqueos de la escuela
+ var proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+ frame.innerHTML='<iframe src="'+proxyUrl+'" allow="autoplay;encrypted-media;clipboard-write;fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0"></iframe>';
+ }
 
-  document.getElementById('navform').addEventListener('submit',function(e){
-    e.preventDefault();
-    var v=document.getElementById('navq').value.trim();
-    if(!v)return;
-    if(v.indexOf('.')<0) v='https://duckduckgo.com/?q='+encodeURIComponent(v);
-    open(v);
-  });
+ document.getElementById('navform').addEventListener('submit',function(e){
+ e.preventDefault();
+ var v=document.getElementById('navq').value.trim();
+ if(!v)return;
+ if(v.indexOf('.')<0) v='https://duckduckgo.com/?q='+encodeURIComponent(v);
+ open(v);
+ });
 
-  document.getElementById('navshort').addEventListener('click',function(e){
-    var b=e.target.closest('[data-go]');
-    if(b)open(b.dataset.go);
-  });
+ document.getElementById('navshort').addEventListener('click',function(e){
+ var b=e.target.closest('[data-go]');
+ if(b)open(b.dataset.go);
+ });
 };
 
 function toEmbed(raw){
-  var t=raw.trim();
-  if(!t)return null;
-  if(/^https?:\/\//i.test(t)||/^www\./i.test(t)){
-    var url=t.replace(/^www\./i,'https://www.');
-    var vtt=url.match(/tiktok\.com\/@[^\/]+\/video\/(\d+)/i);
-    if(vtt)return 'https://www.tiktok.com/embed/v2/'+vtt[1];
-    var ptt=url.match(/tiktok\.com\/@([A-Za-z0-9._]+)/i);
-    if(ptt)return 'https://www.tiktok.com/embed/@'+ptt[1];
-    var vig=url.match(/instagram\.com\/(?:p|reel|tv)\/([A-Za-z0-9_-]+)/i);
-    if(vig)return 'https://www.instagram.com/p/'+vig[1]+'/embed';
-    var pig=url.match(/instagram\.com\/([A-Za-z0-9._]+)/i);
-    if(pig)return 'https://www.instagram.com/'+pig[1]+'/embed';
-    return null;
-  }
-  var user=t.replace(/^@/,'').replace(/[^A-Za-z0-9._]/g,'');
-  if(!user)return null;
-  return socTab==='tiktok'
-    ? 'https://www.tiktok.com/embed/@'+user
-    : 'https://www.instagram.com/'+user+'/embed';
+ var t=raw.trim();
+ if(!t)return null;
+ if(/^https?:\/\//i.test(t)||/^www\./i.test(t)){
+ var url=t.replace(/^www\./i,'https://www.');
+ var vtt=url.match(/tiktok\.com\/@[^\/]+\/video\/(\d+)/i);
+ if(vtt)return 'https://www.tiktok.com/embed/v2/'+vtt[1];
+ var ptt=url.match(/tiktok\.com\/@([A-Za-z0-9._]+)/i);
+ if(ptt)return 'https://www.tiktok.com/embed/@'+ptt[1];
+ var vig=url.match(/instagram\.com\/(?:p|reel|tv)\/([A-Za-z0-9_-]+)/i);
+ if(vig)return 'https://www.instagram.com/p/'+vig[1]+'/embed';
+ var pig=url.match(/instagram\.com\/([A-Za-z0-9._]+)/i);
+ if(pig)return 'https://www.instagram.com/'+pig[1]+'/embed';
+ return null;
+ }
+ var user=t.replace(/^@/,'').replace(/[^A-Za-z0-9._]/g,'');
+ if(!user)return null;
+ return socTab==='tiktok'
+ ? 'https://www.tiktok.com/embed/@'+user
+ : 'https://www.instagram.com/'+user+'/embed';
 }
 
 MOUNT['/social']=function(){
-  var frame=document.getElementById('socframe');
-  var now=document.getElementById('socnow');
-  var sug=document.getElementById('socsug');
+ var frame=document.getElementById('socframe');
+ var now=document.getElementById('socnow');
+ var sug=document.getElementById('socsug');
+ sug.innerHTML=SOC_SUG[socTab].map(function(s){
+ return '<button class="pill" data-user="'+s[1]+'">@'+esc(s[0])+'</button>';
+ }).join('');
 
-  function drawSug(){
-    sug.innerHTML=SOC_SUG[socTab].map(function(s){
-      return '<button class="pill" data-user="'+s[0]+'">'+esc(s[1])+'</button>';
-    }).join('');
-  }
-  drawSug();
+ document.getElementById('socform').addEventListener('submit',function(e){
+ e.preventDefault();
+ var v=document.getElementById('socq').value.trim();
+ if(!v)return;
+ var url=toEmbed(v);
+ if(url){
+ now.innerHTML='<a href="'+url+'" target="_blank" style="color:var(--or)">Abrir en pestaña nueva</a>';
+ frame.style.display='block';
+ frame.innerHTML='<iframe src="'+url+'" allow="autoplay;encrypted-media;clipboard-write;fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0"></iframe>';
+ } else {
+ now.innerHTML='No se pudo reconocer el enlace.';
+ }
+ });
 
-  function load(raw){
-    var e=toEmbed(raw);
-    if(!e){now.textContent='No reconozco ese enlace.';return}
-    now.textContent='Cargando...';
-    frame.style.display='block';
-    frame.innerHTML='<iframe src="'+e+'" allow="autoplay;encrypted-media;clipboard-write;picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0"></iframe>';
-    now.innerHTML='<a href="'+e+'" target="_blank" style="color:var(--or)">Abrir en pestaña nueva</a>';
-  }
-
-  document.getElementById('socseg').addEventListener('click',function(e){
-    var b=e.target.closest('[data-tab]');
-    if(!b)return;
-    socTab=b.dataset.tab;
-    Array.prototype.forEach.call(b.parentNode.children,function(c){c.classList.toggle('on',c===b)});
-    drawSug();
-    frame.style.display='none';
-    now.textContent='Nada cargado.';
-  });
-
-  document.getElementById('socform').addEventListener('submit',function(e){
-    e.preventDefault();
-    load(document.getElementById('socq').value);
-    document.getElementById('socq').value='';
-  });
-
-  sug.addEventListener('click',function(e){
-    var b=e.target.closest('[data-user]');
-    if(!b)return;
-    load(b.dataset.user);
-    frame.scrollIntoView({behavior:'smooth',block:'center'});
-  });
+ sug.addEventListener('click',function(e){
+ var b=e.target.closest('[data-user]');
+ if(b){
+ var u=b.dataset.user;
+ var url=socTab==='tiktok'?'https://www.tiktok.com/embed/'+u:'https://www.instagram.com/'+u+'/embed';
+ now.innerHTML='<a href="'+url+'" target="_blank" style="color:var(--or)">Abrir en pestaña nueva</a>';
+ frame.style.display='block';
+ frame.innerHTML='<iframe src="'+url+'" allow="autoplay;encrypted-media;clipboard-write;fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0"></iframe>';
+ }
+ });
 };
 
-function pickStream(j){
-  if(!j)return null;
-  var auds=(j.audioStreams||[]).slice().sort(function(a,b){return (b.bitrate||0)-(a.bitrate||0)});
-  var muxed=(j.videoStreams||[]).filter(function(s){
-    return s.videoOnly===false && s.url && /mp4/.test(s.mimeType||'');
-  });
-  return {audio:auds[0]?auds[0].url:null,video:muxed[0]?muxed[0].url:null,title:j.title||''};
+document.getElementById('ytseg').addEventListener('click',function(e){
+ var b=e.target.closest('[data-mode]');
+ if(b){ytMode=b.dataset.mode;document.querySelectorAll('#ytseg button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');}
+});
+
+document.getElementById('ytform').addEventListener('submit',function(e){
+ e.preventDefault();
+ var q=document.getElementById('ytq').value.trim();
+ if(!q)return;
+ var grid=document.getElementById('ytres');
+ grid.innerHTML='<p class="empty">Buscando...</p>';
+ var bar=document.getElementById('ytbar');
+ bar.classList.remove('on');
+ document.getElementById('ytplayer').classList.remove('on');
+ 
+ piped('/search?q='+encodeURIComponent(q)).then(function(res){
+ if(!res)return;
+ grid.innerHTML=res.items.map(function(i){
+ var thumb=i.thumbnail||'';
+ var id=i.url.replace('https://www.youtube.com/watch?v=','');
+ var isPlaylist=i.url.includes('playlist');
+ return '<div class="card" data-id="'+id+'" data-pl="'+(isPlaylist?'1':'0')+'"><img src="'+thumb+'" alt=""><div class="t">'+esc(i.title)+'<small>'+esc(i.uploader?.name||'')+' • '+i.durationText+'</small></div></div>';
+ }).join('');
+ 
+ grid.addEventListener('click',function(e){
+ var c=e.target.closest('.card');
+ if(!c)return;
+ var id=c.dataset.id;
+ var isPl=c.dataset.pl==='1';
+ playYt(isPl?id:null, isPl?null:id);
+ });
+ }).catch(function(){grid.innerHTML='<p class="empty">Error al buscar.</p>'});
+});
+
+function playYt(pid,vid){
+ var player=document.getElementById('ytplayer');
+ var bar=document.getElementById('ytbar');
+ var title=document.createElement('div');
+ title.className='now';
+ 
+ if(ytMode==='audio'){
+ player.classList.remove('on');
+ bar.classList.add('on');
+ if(!bar.querySelector('audio')){
+ var aud=document.createElement('audio');
+ aud.controls=true;aud.autoplay=true;
+ bar.innerHTML='';bar.appendChild(aud);
+ }
+ var aud=bar.querySelector('audio');
+ piped('/streams/'+vid).then(function(s){
+ if(s&&s.audioStreams.length>0){
+ aud.src=s.audioStreams[0].url;
+ title.innerHTML='Reproduciendo: <b>'+esc(document.querySelector('[data-id="'+vid+'"] .t b')?.innerText||'Video')+'</b>';
+ } else {
+ aud.pause();
+ }
+ });
+ } else {
+ bar.classList.remove('on');
+ player.classList.add('on');
+ if(pid){
+ player.innerHTML='<iframe src="https://www.youtube.com/embed/videoseries?list='+pid+'" allowfullscreen style="width:100%;height:100%;border:0"></iframe>';
+ } else {
+ player.innerHTML='<iframe src="https://www.youtube.com/embed/'+vid+'" allowfullscreen style="width:100%;height:100%;border:0"></iframe>';
+ }
+ title.innerHTML='Reproduciendo: <b>'+vid+'</b>';
+ }
+ document.getElementById('ytbar').insertAdjacentElement('afterend',title);
 }
 
-function mediaTag(src,compact){
-  return '<video controls autoplay playsinline preload="metadata" src="'+esc(src)+'"'+
-    (compact?' style="width:100%;max-height:170px;background:#000;border-radius:8px"':'')+'></video>';
-}
+document.getElementById('radgrid').addEventListener('click',function(e){
+ var c=e.target.closest('.card');
+ if(!c)return;
+ var idx=c.dataset.st;
+ var s=STATIONS[idx];
+ var aud=document.getElementById('rad');
+ aud.src=s.u[Math.floor(Math.random()*s.u.length)];
+ aud.play();
+ document.getElementById('radnow').innerHTML='Escuchando: <b>'+esc(s.n)+'</b>';
+});
 
-function playYt(id,player,bar){
-  player.classList.add('on');
-  bar.classList.add('on');
-  bar.innerHTML='<span class="pill">Cargando...</span>';
-  player.innerHTML='<div style="padding:18px"><p class="empty">Cargando...</p></div>';
-
-  piped('/streams/'+id).then(function(j){
-    var s=pickStream(j);
-    if(s&&ytMode==='audio'&&(s.audio||s.video)){
-      player.classList.add('audio');
-      player.innerHTML='<div style="font-size:13px;margin-bottom:10px">'+esc(s.title)+'</div>'+mediaTag(s.audio||s.video,1);
-      bar.innerHTML='<a class="pill" href="https://www.youtube.com/watch?v='+id+'" target="_blank">Abrir en YouTube</a>';
-      return;
-    }
-    if(s&&s.video){
-      player.classList.remove('audio');
-      player.innerHTML=mediaTag(s.video,0);
-      bar.innerHTML='<a class="pill" href="https://www.youtube.com/watch?v='+id+'" target="_blank">Abrir en YouTube</a>'+
-        '<button class="pill" data-aud="'+id+'">Solo audio</button>';
-      return;
-    }
-    if(s&&s.audio){
-      player.classList.add('audio');
-      player.innerHTML='<div style="font-size:13px;margin-bottom:10px">'+esc(s.title)+'</div>'+mediaTag(s.audio,1);
-      bar.innerHTML='<a class="pill" href="https://www.youtube.com/watch?v='+id+'" target="_blank">Abrir en YouTube</a>';
-      return;
-    }
-    player.classList.remove('audio');
-    player.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&origin='+encodeURIComponent(location.origin||'')+'" allow="autoplay;encrypted-media;picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
-    bar.innerHTML='<a class="pill" href="https://www.youtube.com/watch?v='+id+'" target="_blank">Abrir en YouTube</a>'+
-      '<button class="pill" data-aud="'+id+'">Reintentar en audio</button>';
-  });
-}
-
-MOUNT['/youtube']=function(){
-  var seg=document.getElementById('ytseg');
-  var form=document.getElementById('ytform');
-  var res=document.getElementById('ytres');
-  var player=document.getElementById('ytplayer');
-  var bar=document.getElementById('ytbar');
-
-  seg.addEventListener('click',function(e){
-    var b=e.target.closest('button[data-mode]');
-    if(!b)return;
-    ytMode=b.dataset.mode;
-    Array.prototype.forEach.call(seg.children,function(c){c.classList.toggle('on',c===b)});
-  });
-
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var q=document.getElementById('ytq').value.trim();
-    if(!q)return;
-    res.innerHTML='<p class="empty">Buscando...</p>';
-    piped('/search?q='+encodeURIComponent(q)+'&filter=videos').then(function(j){
-      if(!j||!j.items||!j.items.length){res.innerHTML='<p class="empty">Sin resultados.</p>';return}
-      res.innerHTML=j.items.filter(function(i){return i.url&&i.url.indexOf('v=')>-1}).map(function(i){
-        var id=i.url.split('v=')[1].split('&')[0];
-        return '<div class="card" data-vid="'+id+'"><img loading="lazy" src="'+esc(i.thumbnail)+'" alt=""><div class="t">'+esc(i.title)+'<small>'+esc(i.uploaderName||'')+'</small></div></div>';
-      }).join('');
-    });
-  });
-
-  res.addEventListener('click',function(e){
-    var c=e.target.closest('[data-vid]');
-    if(c)playYt(c.dataset.vid,player,bar);
-  });
-
-  bar.addEventListener('click',function(e){
-    var b=e.target.closest('[data-aud]');
-    if(!b)return;
-    ytMode='audio';
-    Array.prototype.forEach.call(seg.children,function(c){c.classList.toggle('on',c.dataset.mode==='audio')});
-    playYt(b.dataset.aud,player,bar);
-  });
-};
-
-MOUNT['/musica']=function(){
-  var rad=document.getElementById('rad');
-  var now=document.getElementById('radnow');
-  var wave=document.getElementById('radwave');
-  var queue=[],qi=0,curName='';
-
-  function next(){
-    if(qi>=queue.length){now.innerHTML='<b>'+esc(curName)+'</b> no responde';wave.classList.remove('on');return}
-    rad.src=queue[qi++];
-    rad.play().catch(function(){});
-  }
-
-  rad.addEventListener('error',next);
-  rad.addEventListener('playing',function(){wave.classList.add('on')});
-  rad.addEventListener('pause',function(){wave.classList.remove('on')});
-
-  document.getElementById('radgrid').addEventListener('click',function(e){
-    var c=e.target.closest('[data-st]');
-    if(!c)return;
-    var s=STATIONS[+c.dataset.st];
-    curName=s.n;queue=s.u.slice();qi=0;
-    now.innerHTML='Conectando con <b>'+esc(s.n)+'</b>...';
-    next();
-  });
-
-  var title=document.getElementById('mustitle');
-  var host=document.getElementById('musplayer');
-  var msg=document.getElementById('musmsg');
-  var mwave=document.getElementById('muswave');
-  var res=document.getElementById('musres');
-
-  document.getElementById('musform').addEventListener('submit',function(e){
-    e.preventDefault();
-    var q=document.getElementById('musq').value.trim();
-    if(!q)return;
-    res.innerHTML='<p class="empty">Buscando...</p>';
-    piped('/search?q='+encodeURIComponent(q)+'&filter=videos').then(function(j){
-      if(!j||!j.items){res.innerHTML='<p class="empty">Sin resultados.</p>';return}
-      res.innerHTML=j.items.filter(function(i){return i.url&&i.url.indexOf('v=')>-1}).map(function(i){
-        var id=i.url.split('v=')[1].split('&')[0];
-        return '<div class="card" data-aud="'+id+'" data-t="'+esc(i.title)+'"><img loading="lazy" src="'+esc(i.thumbnail)+'" alt=""><div class="t">'+esc(i.title)+'<small>'+esc(i.uploaderName||'')+'</small></div></div>';
-      }).join('');
-    });
-  });
-
-  function load(id,label){
-    document.getElementById('musbox').style.display='flex';
-    title.textContent=label;
-    msg.textContent='';
-    host.innerHTML='<p class="empty">Cargando...</p>';
-    piped('/streams/'+id).then(function(j){
-      var s=pickStream(j);
-      if(!s||(!s.audio&&!s.video)){
-        host.innerHTML='';
-        msg.textContent='No se pudo obtener el audio. Prueba otra cancion.';
-        return;
-      }
-      host.innerHTML=mediaTag(s.audio||s.video,1);
-      var el=host.querySelector('video');
-      el.addEventListener('playing',function(){mwave.classList.add('on')});
-      el.addEventListener('pause',function(){mwave.classList.remove('on')});
-      el.addEventListener('error',function(){msg.textContent='El navegador no reproduce este archivo.'});
-      var pr=el.play();
-      if(pr&&pr.catch)pr.catch(function(){msg.textContent='Pulsa play para empezar.'});
-    });
-  }
-
-  res.addEventListener('click',function(e){
-    var c=e.target.closest('[data-aud]');
-    if(!c)return;
-    load(c.dataset.aud,c.dataset.t);
-  });
-};
-
-var FILM_SRV=[
-  ['Vidsrc','https://vidsrc.to/embed/movie/'],
-  ['Vidsrc XYZ','https://vidsrc.xyz/embed/movie/'],
-  ['Vidsrc CC','https://vidsrc.cc/v2/embed/movie/'],
-  ['2Embed','https://2embed.cc/embed/']
-];
+document.getElementById('musform').addEventListener('submit',function(e){
+ e.preventDefault();
+ var q=document.getElementById('musq').value.trim();
+ if(!q)return;
+ var grid=document.getElementById('musres');
+ grid.innerHTML='<p class="empty">Buscando...</p>';
+ piped('/search?q='+encodeURIComponent(q)).then(function(res){
+ if(!res)return;
+ grid.innerHTML=res.items.filter(function(i){return i.type==='video'}).slice(0,20).map(function(i){
+ var thumb=i.thumbnail||'';
+ var id=i.url.replace('https://www.youtube.com/watch?v=','');
+ return '<div class="card" data-id="'+id+'"><img src="'+thumb+'" alt=""><div class="t">'+esc(i.title)+'<small>'+esc(i.uploader?.name||'')+'</small></div></div>';
+ }).join('');
+ 
+ grid.addEventListener('click',function(e){
+ var c=e.target.closest('.card');
+ if(!c)return;
+ var id=c.dataset.id;
+ var box=document.getElementById('musbox');
+ var title=document.getElementById('mustitle');
+ var msg=document.getElementById('musmsg');
+ box.style.display='flex';
+ msg.textContent='Cargando...';
+ piped('/streams/'+id).then(function(s){
+ if(s&&s.audioStreams.length>0){
+ var audSrc=s.audioStreams[0].url;
+ var audCont='<audio controls autoplay src="'+audSrc+'"></audio>';
+ document.getElementById('musplayer').innerHTML=audCont;
+ title.textContent=i.title;
+ msg.textContent='Reproduciendo: '+i.title;
+ } else {
+ msg.textContent='No se pudo obtener el audio.';
+ }
+ });
+ });
+ }).catch(function(){grid.innerHTML='<p class="empty">Error al buscar.</p>'});
+});
 
 MOUNT['/pelis']=function(){
-  var player=document.getElementById('filmplayer');
-  var srv=document.getElementById('fservers');
-  var current=0;
+ var players=document.getElementById('filmplayer');
+ var servers=document.getElementById('fservers');
+ var grid=document.getElementById('filmgrid');
+ 
+ servers.innerHTML=['Fuentes 1','Fuentes 2'].map(function(s,i){
+ return '<button class="pill'+(i===0?' on':'')+'" data-src="'+(i+1)+'">'+s+'</button>';
+ }).join('');
 
-  srv.innerHTML=FILM_SRV.map(function(s,i){
-    return '<button class="pill'+(i===0?' on':'')+'" data-srv="'+i+'">'+s[0]+'</button>';
-  }).join('');
-
-  function load(id){
-    player.style.display='block';
-    player.innerHTML='<iframe src="'+FILM_SRV[current][1]+id+'" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
-  }
-
-  srv.addEventListener('click',function(e){
-    var b=e.target.closest('[data-srv]');
-    if(!b)return;
-    current=+b.dataset.srv;
-    Array.prototype.forEach.call(srv.children,function(c){c.classList.toggle('on',c===b)});
-    var act=document.querySelector('[data-film].sel');
-    if(act)load(act.dataset.film);
-  });
-
-  document.getElementById('filmgrid').addEventListener('click',function(e){
-    var c=e.target.closest('[data-film]');
-    if(!c)return;
-    document.querySelectorAll('[data-film]').forEach(function(x){x.classList.remove('sel')});
-    c.classList.add('sel');
-    load(c.dataset.film);
-    player.scrollIntoView({behavior:'smooth',block:'center'});
-  });
+ grid.addEventListener('click',function(e){
+ var c=e.target.closest('.card');
+ if(!c)return;
+ var id=c.dataset.film;
+ var card=grid.querySelector('[data-film="'+id+'"]');
+ var title=card.querySelector('.poster').childNodes[0].textContent.trim();
+ var year=card.querySelector('.poster small').textContent;
+ 
+ // Intento de carga con proxy para evitar bloqueos
+ var proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.google.com/search?q=' + encodeURIComponent(title + ' ' + year + ' online'));
+ 
+ players.style.display='block';
+ players.innerHTML='<iframe src="about:blank" style="width:100%;height:100%;border:0"></iframe>';
+ players.querySelector('iframe').src = 'https://vidsrc.xyz/embed/movie?id='+id; // Usamos vidsrc que suele funcionar mejor
+ 
+ // Fallback button
+ var fb = document.createElement('button');
+ fb.className = 'pill';
+ fb.textContent = 'Si no carga, prueba aquí';
+ fb.onclick = function() { window.open('https://vidsrc.to/embed/movie?tmdb='+id, '_blank'); };
+ players.parentNode.insertBefore(fb, players.nextSibling);
+ });
 };
 
 MOUNT['/series']=function(){
-  var player=document.getElementById('serplayer');
-  var srv=document.getElementById('serservers');
-  var current=0;
+ var players=document.getElementById('serplayer');
+ var servers=document.getElementById('serservers');
+ var grid=document.getElementById('filmgrid'); // Reutilizamos grid logic but for series
+ var seasonInput=document.getElementById('sseason');
+ var epInput=document.getElementById('sep');
+ 
+ servers.innerHTML=['Fuentes 1','Fuentes 2'].map(function(s,i){
+ return '<button class="pill'+(i===0?' on':'')+'" data-src="'+(i+1)+'">'+s+'</button>';
+ }).join('');
 
-  srv.innerHTML=FILM_SRV.map(function(s,i){
-    return '<button class="pill'+(i===0?' on':'')+'" data-srv="'+i+'">'+s[0]+'</button>';
-  }).join('');
-
-  function load(id){
-    var s=document.getElementById('sseason').value||1;
-    var e=document.getElementById('sep').value||1;
-    player.style.display='block';
-    player.innerHTML='<iframe src="'+FILM_SRV[current][1].replace('/movie/','/tv/')+id+'/'+s+'/'+e+'" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
-  }
-
-  srv.addEventListener('click',function(e){
-    var b=e.target.closest('[data-srv]');
-    if(!b)return;
-    current=+b.dataset.srv;
-    Array.prototype.forEach.call(srv.children,function(c){c.classList.toggle('on',c===b)});
-    var act=document.querySelector('[data-ser].sel');
-    if(act)load(act.dataset.ser);
-  });
-
-  document.querySelectorAll('[data-ser]').forEach(function(c){
-    c.addEventListener('click',function(){
-      document.querySelectorAll('[data-ser]').forEach(function(x){x.classList.remove('sel')});
-      c.classList.add('sel');
-      load(c.dataset.ser);
-      player.scrollIntoView({behavior:'smooth',block:'center'});
-    });
-  });
+ grid.addEventListener('click',function(e){
+ var c=e.target.closest('.card');
+ if(!c)return;
+ var id=c.dataset.ser;
+ var card=grid.querySelector('[data-ser="'+id+'"]');
+ var title=card.querySelector('.poster').childNodes[0].textContent.trim();
+ 
+ players.style.display='block';
+ players.innerHTML='<iframe src="about:blank" style="width:100%;height:100%;border:0"></iframe>';
+ players.querySelector('iframe').src = 'https://vidsrc.xyz/embed/tmdb/tv?id='+id+'&season='+seasonInput.value+'&episode='+epInput.value;
+ 
+ seasonInput.onchange=epInput.onchange=function(){
+     var iframe = players.querySelector('iframe');
+     if(iframe) iframe.src = 'https://vidsrc.xyz/embed/tmdb/tv?id='+id+'&season='+seasonInput.value+'&episode='+epInput.value;
+ };
+ });
 };
 
 MOUNT['/juegos']=function(){
-  var frame=document.getElementById('gameframe');
-  var iframe=document.getElementById('indieframe');
-  var wframe=document.getElementById('webframe');
-  var wsrc=document.getElementById('websrc');
+ var webFrame=document.getElementById('webframe');
+ var consoleFrame=document.getElementById('gameframe');
+ var indieFrame=document.getElementById('indieframe');
+ var extFrame=document.getElementById('extframe');
+ var customGrid=document.getElementById('customgrid');
+ var gameForm=document.getElementById('gameform');
+ var sysRow=document.getElementById('sysrow');
+ var webGrid=document.getElementById('webgrid');
+ var webSrc=document.getElementById('websrc');
 
-  function urls(slug){return [W1+slug, W2+slug];}
+ // Set sources for web games
+ webSrc.innerHTML=['Fuente 1','Fuente 2'].map(function(s,i){
+ return '<button class="pill'+(i===0?' on':'')+'" data-src="'+(i===0?W1:W2)+'">'+s+'</button>';
+ }).join('');
 
-  function loadWeb(i,idx){
-    var g=WEB[i];
-    var list=urls(g[0]);
-    wframe.style.display='block';
-    wframe.innerHTML='<iframe src="'+list[idx]+'" allow="autoplay;gamepad;fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0"></iframe>';
-    wsrc.innerHTML='<span class="pill" style="cursor:default">'+esc(g[1])+':</span>'+
-      '<button class="pill'+(idx===0?' on':'')+'" data-wsrc="'+i+'-0">Fuente 1</button>'+
-      '<button class="pill'+(idx===1?' on':'')+'" data-wsrc="'+i+'-1">Fuente 2</button>'+
-      '<a class="pill" href="'+list[idx]+'" target="_blank">Abrir fuera</a>';
-  }
+ var currentWebSrc=W1;
 
-  document.getElementById('webgrid').addEventListener('click',function(e){
-    var c=e.target.closest('[data-web]');
-    if(!c)return;
-    loadWeb(+c.dataset.web,0);
-    wframe.scrollIntoView({behavior:'smooth',block:'center'});
-  });
+ webSrc.addEventListener('click',function(e){
+ var b=e.target.closest('[data-src]');
+ if(b){
+ currentWebSrc=b.dataset.src;
+ document.querySelectorAll('#websrc .pill').forEach(function(x){x.classList.remove('on')});
+ b.classList.add('on');
+ }
+ });
 
-  wsrc.addEventListener('click',function(e){
-    var b=e.target.closest('[data-wsrc]');
-    if(!b)return;
-    var p=b.dataset.wsrc.split('-');
-    loadWeb(+p[0],+p[1]);
-  });
+ webGrid.addEventListener('click',function(e){
+ var c=e.target.closest('.card');
+ if(!c)return;
+ var idx=c.dataset.web;
+ var g=WEB[idx];
+ var url=currentWebSrc+g[0];
+ 
+ // Usamos el proxy para cargar el juego
+ webFrame.style.display='block';
+ webFrame.classList.add('loading');
+ webFrame.innerHTML='<iframe src="about:blank" style="width:100%;height:100%;border:0"></iframe>';
+ var iframe = webFrame.querySelector('iframe');
+ iframe.src = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+ iframe.onload=function(){webFrame.classList.remove('loading')};
+ });
 
-  document.getElementById('sysrow').addEventListener('click',function(e){
-    var b=e.target.closest('[data-sys]');
-    if(!b)return;
-    gameSys=b.dataset.sys;
-    render();
-  });
+ document.getElementById('gameform').addEventListener('submit',function(e){
+ e.preventDefault();
+ var n=document.getElementById('gname').value.trim();
+ var u=document.getElementById('gurl').value.trim();
+ if(!n||!u)return;
+ var custom=get('games',[]);
+ custom.push({n:n,u:u});
+ set('games',custom);
+ renderCustomGames();
+ });
 
-  document.getElementById('gamegrid').addEventListener('click',function(e){
-    var c=e.target.closest('[data-slug]');
-    if(!c)return;
-    frame.style.display='block';
-    frame.innerHTML='<iframe src="https://www.retrostic.com/es/roms/'+c.dataset.gsys+'/'+c.dataset.slug+'/play" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0"></iframe>';
-    frame.scrollIntoView({behavior:'smooth',block:'center'});
-  });
+ function renderCustomGames(){
+ var custom=get('games',[]);
+ customGrid.innerHTML=custom.length?custom.map(function(g,i){
+ return '<div class="card" data-custom="'+i+'"><div class="x" data-delgame="'+i+'"><i class="fa-solid fa-xmark"></i></div><div class="poster">'+esc(g.n)+'<small>tuyo</small></div></div>';
+ }).join(''):'<p class="empty">Aun no has añadido ninguno.</p>';
+ 
+ customGrid.addEventListener('click',function(e){
+ var c=e.target.closest('.card');
+ if(e.target.closest('.x')){
+ var idx=e.target.closest('[data-delgame]').dataset.delgame;
+ var custom=get('games',[]);
+ custom.splice(idx,1);
+ set('games',custom);
+ renderCustomGames();
+ return;
+ }
+ if(!c)return;
+ var idx=c.dataset.custom;
+ var g=custom[idx];
+ indieFrame.style.display='block';
+ indieFrame.innerHTML='<iframe src="'+g.u+'" style="width:100%;height:100%;border:0"></iframe>';
+ });
+ }
 
-  function loadCustom(i){
-    var g=get('games',[])[i];
-    if(!g)return;
-    iframe.style.display='block';
-    iframe.innerHTML='<iframe src="'+g.u+'" allow="autoplay;gamepad;fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0"></iframe>';
-    iframe.scrollIntoView({behavior:'smooth',block:'center'});
-  }
+ renderCustomGames();
 
-  document.getElementById('customgrid').addEventListener('click',function(e){
-    var del=e.target.closest('[data-delgame]');
-    if(del){
-      var arr=get('games',[]);
-      arr.splice(+del.dataset.delgame,1);
-      set('games',arr);
-      render();
-      return;
-    }
-    var c=e.target.closest('[data-custom]');
-    if(c)loadCustom(+c.dataset.custom);
-  });
+ sysRow.addEventListener('click',function(e){
+ var b=e.target.closest('[data-sys]');
+ if(b){
+ gameSys=b.dataset.sys;
+ document.querySelectorAll('#sysrow .pill').forEach(function(x){x.classList.remove('on')});
+ b.classList.add('on');
+ renderGameGrid();
+ }
+ });
 
-  document.getElementById('gameform').addEventListener('submit',function(e){
-    e.preventDefault();
-    var u=document.getElementById('gurl').value.trim();
-    if(!u)return;
-    var n=document.getElementById('gname').value.trim()||'Juego';
-    var arr=get('games',[]);
-    arr.push({n:n,u:u});
-    set('games',arr);
-    render();
-  });
+ function renderGameGrid(){
+ document.getElementById('gamegrid').innerHTML=GAMES.filter(function(g){return g[0]===gameSys}).map(function(g){
+ return '<div class="card" data-gsys="'+g[0]+'" data-slug="'+g[1]+'"><div class="poster">'+esc(g[2])+'<small>'+g[0].toUpperCase()+'</small></div></div>';
+ }).join('');
+ 
+ document.getElementById('gamegrid').addEventListener('click',function(e){
+ var c=e.target.closest('.card');
+ if(!c)return;
+ var slug=c.dataset.slug;
+ consoleFrame.style.display='block';
+ consoleFrame.innerHTML='<div class="js-dos"></div>';
+ new JSDos({
+ container: consoleFrame.querySelector('.js-dos'),
+ modules: [{id:'autodetect',args:['-autoexit']}],
+ roms: [{path:'/'+slug+'.zip',url:W1+slug+'.zip',load:true}]
+ });
+ });
+ }
 
-  document.getElementById('flashdemo').addEventListener('click',function(){
-    document.getElementById('extframe').innerHTML='<div class="frame" style="margin-top:12px"><iframe src="https://ruffle.rs/demo/" style="width:100%;height:100%;border:0"></iframe></div>';
-  });
+ renderGameGrid();
 
-  document.getElementById('dosdoom').addEventListener('click',function(){
-    var host=document.getElementById('extframe');
-    host.innerHTML='<div class="frame" id="dosbox" style="margin-top:12px"></div>';
-    if(window.Dos)new window.Dos(document.getElementById('dosbox'),{url:'https://cdn.dos.zone/custom/dos/doom.jsdos'});
-    else host.innerHTML='<p class="empty">No se pudo cargar el emulador DOS.</p>';
-  });
+ document.getElementById('flashdemo').onclick=function(){
+ extFrame.innerHTML='<div id="rdemo" style="width:100%;height:100%"></div>';
+ Ruffle.embed('https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle/examples/player.swf', document.getElementById('rdemo'));
+ };
+ 
+ document.getElementById('dosdoom').onclick=function(){
+ extFrame.innerHTML='<div class="js-dos"></div>';
+ new JSDos({
+ container: extFrame.querySelector('.js-dos'),
+ roms: [{path:'doom.wad',url:'https://v8.js-dos.com/bundles/doom.wad'}],
+ cart:{cart:'https://v8.js-dos.com/cart/dos/doom.zip',load:true}
+ });
+ };
 };
 
 MOUNT['/ia']=function(){
-  var chat=document.getElementById('chat');
-  var form=document.getElementById('iaform');
-  var input=document.getElementById('iaq');
+ var chat=document.getElementById('chat');
+ var form=document.getElementById('iaform');
+ var input=document.getElementById('iaq');
 
-  function draw(){
-    chat.innerHTML=aiMsgs.map(function(m){
-      return '<div class="msg '+(m.r==='u'?'u':'a')+'">'+esc(m.c)+'</div>';
-    }).join('')||'<p class="empty">Escribe abajo para empezar.</p>';
-    window.scrollTo(0,document.body.scrollHeight);
-  }
-  draw();
-
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var q=input.value.trim();
-    if(!q)return;
-    input.value='';
-    aiMsgs.push({r:'u',c:q});
-    aiMsgs.push({r:'a',c:'...'});
-    draw();
-
-    var body={model:'openai',messages:[{role:'system',content:'Responde en español, claro y directo.'}].concat(
-      aiMsgs.filter(function(m){return m.c!=='...'}).map(function(m){
-        return {role:m.r==='u'?'user':'assistant',content:m.c};
-      })
-    )};
-
-    fetch('https://text.pollinations.ai/openai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
-    .then(function(r){return r.json()})
-    .then(function(j){
-      var t=(j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content)||'';
-      if(!t)throw 0;
-      aiMsgs[aiMsgs.length-1]={r:'a',c:t};
-      draw();
-    })
-    .catch(function(){
-      fetch('https://text.pollinations.ai/'+encodeURIComponent(q))
-      .then(function(r){return r.text()})
-      .then(function(t){aiMsgs[aiMsgs.length-1]={r:'a',c:t||'Sin respuesta.'};draw()})
-      .catch(function(){aiMsgs[aiMsgs.length-1]={r:'a',c:'No se pudo conectar con la IA.'};draw()});
-    });
-  });
+ form.addEventListener('submit',function(e){
+ e.preventDefault();
+ var q=input.value.trim();
+ if(!q)return;
+ input.value='';
+ chat.innerHTML+='<div class="msg u">'+esc(q)+'</div>';
+ chat.scrollTop=chat.scrollHeight;
+ 
+ // Simple AI simulation using a public API or local logic
+ fetch('https://api.openai.com/v1/chat/completions', {
+ method: 'POST',
+ headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer sk-your-api-key-here'}, // Replace with your key or use a free API
+ body: JSON.stringify({model: 'gpt-3.5-turbo', messages: [{role: 'user', content: q}]})
+ })
+ .then(r => r.json())
+ .then(j => {
+ chat.innerHTML+='<div class="msg a">'+(j.choices[0].message.content)+'</div>';
+ chat.scrollTop=chat.scrollHeight;
+ })
+ .catch(() => {
+ chat.innerHTML+='<div class="msg a">No se pudo conectar con la IA. (API Key requerida)</div>';
+ chat.scrollTop=chat.scrollHeight;
+ });
+ });
 };
 
 MOUNT['/cuentas']=function(){
-  document.getElementById('accform').addEventListener('submit',function(e){
-    e.preventDefault();
-    var a=get('accs',[]);
-    a.push({s:document.getElementById('accserv').value,u:document.getElementById('accemail').value,p:document.getElementById('accpass').value});
-    set('accs',a);
-    render();
-  });
-  document.getElementById('acclist').addEventListener('click',function(e){
-    var d=e.target.closest('[data-del]');
-    if(!d)return;
-    var a=get('accs',[]);
-    a.splice(+d.dataset.del,1);
-    set('accs',a);
-    render();
-  });
+ var list=document.getElementById('acclist');
+ var form=document.getElementById('accform');
+ 
+ form.addEventListener('submit',function(e){
+ e.preventDefault();
+ var s=document.getElementById('accserv').value.trim();
+ var u=document.getElementById('accemail').value.trim();
+ var p=document.getElementById('accpass').value.trim();
+ if(!s)return;
+ var accs=get('accs',[]);
+ accs.push({s:s,u:u,p:p});
+ set('accs',accs);
+ renderAccs();
+ form.reset();
+ });
+
+ function renderAccs(){
+ var accs=get('accs',[]);
+ list.innerHTML=accs.length?accs.map(function(a,i){
+ return '<div class="acc"><div class="h"><span>'+esc(a.s)+'</span><i class="fa-solid fa-trash" data-del="'+i+'" style="cursor:pointer;color:var(--dim)"></i></div>'+
+ '<div style="font-size:13px;color:var(--dim);margin-top:6px">'+esc(a.u||'-')+'</div>'+
+ '<div style="font-size:13px;margin-top:4px;font-family:monospace">'+esc(a.p||'-')+'</div></div>';
+ }).join(''):'<p class="empty">Todavia no has guardado ninguna.</p>';
+ 
+ list.addEventListener('click',function(e){
+ if(e.target.closest('[data-del]')){
+ var idx=e.target.closest('[data-del]').dataset.del;
+ var accs=get('accs',[]);
+ accs.splice(idx,1);
+ set('accs',accs);
+ renderAccs();
+ }
+ });
+ }
+ renderAccs();
 };
 
-var ROUTES={'/':viewHome,'/navegar':viewNavegar,'/youtube':viewYoutube,'/social':viewSocial,'/musica':viewMusica,'/pelis':viewPelis,'/series':viewSeries,'/juegos':viewJuegos,'/ia':viewIA,'/cuentas':viewCuentas};
-
-function render(){
-  var h=(location.hash||'#/').replace('#','')||'/';
-  var fn=ROUTES[h]||viewHome;
-  viewEl.innerHTML=fn();
-  document.querySelectorAll('.dock a').forEach(function(a){a.classList.toggle('on',a.dataset.r===h)});
-  document.querySelectorAll('[data-back]').forEach(function(b){
-    b.addEventListener('click',function(){location.hash='#/'});
-  });
-  if(MOUNT[h])MOUNT[h]();
-  window.scrollTo(0,0);
+// Router
+function router(){
+ var hash=location.hash.slice(1)||'/';
+ var route=MOUNT[hash];
+ if(route){
+ viewEl.innerHTML=(route.head||'')+route();
+ route();
+ } else {
+ viewEl.innerHTML=viewHome();
+ }
+ document.querySelectorAll('.dock a').forEach(function(a){
+ a.classList.toggle('on',a.dataset.r===hash);
+ });
+ document.querySelectorAll('.back').forEach(function(b){
+ b.onclick=function(){history.back()};
+ });
 }
 
-window.addEventListener('hashchange',render);
+window.addEventListener('hashchange',router);
+window.addEventListener('load',router);
 
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape')camo.classList.toggle('on');
-});
-camo.addEventListener('click',function(){camo.classList.remove('on')});
-
+// Clock & Battery
 setInterval(function(){
-  var d=new Date();
-  document.getElementById('clock').textContent=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);
+ var d=new Date();
+ document.getElementById('clock').textContent=d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');
+ if(navigator.getBattery){
+ navigator.getBattery().then(function(b){
+ document.getElementById('batt').textContent=Math.round(b.level*100)+'%';
+ });
+ }
 },1000);
 
-if(navigator.getBattery){
-  navigator.getBattery().then(function(b){
-    function up(){document.getElementById('batt').textContent=Math.round(b.level*100)+'%'}
-    up();
-    b.addEventListener('levelchange',up);
-  });
-}
+// Camo
+document.addEventListener('keydown',function(e){
+ if(e.key==='Escape'){
+ camo.classList.toggle('on');
+ }
+});
 
-render();
 })();
 </script>
 </body>
